@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -30,8 +33,12 @@ public class Pedido {
 	@Column(name = "nota_fiscal_id")
 	private Integer notaFiscalId;
 	
+	@Enumerated (EnumType.STRING)
 	private StatusPedido status;
 	
 	private BigDecimal total;
+	
+	@Embedded
+	private EnderecoEntregaPedido endereco;
 
 }

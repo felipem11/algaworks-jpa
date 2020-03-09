@@ -1,0 +1,13 @@
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/Categoria.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/ItemPedido.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/util/IniciarUnidadeDePersistencia.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/PagamentoBoleto.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/Produto.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/Pedido.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/NotaFiscal.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/StatusPagamento.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/StatusPedido.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/Estoque.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/PagamentoCartao.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/SexoCliente.java
+/home/felipe/git/algaworks-jpa/algaworks-ecommerce/src/main/java/com/algaworks/ecommerce/model/Cliente.java
