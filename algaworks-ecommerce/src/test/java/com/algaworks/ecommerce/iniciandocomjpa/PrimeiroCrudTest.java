@@ -12,7 +12,7 @@ public class PrimeiroCrudTest extends EntityManagerTest{
 		Cliente cliente = new Cliente();
 		
 		entityManager.getTransaction().begin();
-		cliente.setId(3);
+//		cliente.setId(3);
 		cliente.setNome("Freddy Krueger");
 		entityManager.persist(cliente);
 		entityManager.getTransaction().commit();
