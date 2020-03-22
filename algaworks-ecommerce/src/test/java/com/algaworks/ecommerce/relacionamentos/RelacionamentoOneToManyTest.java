@@ -36,5 +36,34 @@ public class RelacionamentoOneToManyTest extends EntityManagerTest{
 		Assert.assertFalse(clienteVerificacao.getPedido().isEmpty());
 		
 	}
+	
+	@Test
+	public void verificarRelacionamentoPedido() {
+		Cliente cliente = entityManager.find(Cliente.class, 1);
+		Produto produto = entityManager.find(Produto.class, 1);
+		
+		Pedido pedido = new Pedido();
+		pedido.setDataPedido(LocalDateTime.now());
+		pedido.setStatus(StatusPedido.AGUARDANDO);
+		pedido.setTotal(BigDecimal.TEN);
+		pedido.setCliente(cliente);
+		
+		ItemPedido itemPedido = new ItemPedido();
+		itemPedido.setPrecoProduto(new BigDecimal(5000));
+		itemPedido.setQuantidade(2);
+		itemPedido.setProduto(produto);
+		itemPedido.setPedido(pedido);
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(pedido);
+		entityManager.persist(itemPedido);
+		entityManager.getTransaction().commit();
+		
+		entityManager.clear();
+		
+		Pedido pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
+		Assert.assertFalse(pedidoVerificacao.getItens().isEmpty());
+		
+	}
 
 }

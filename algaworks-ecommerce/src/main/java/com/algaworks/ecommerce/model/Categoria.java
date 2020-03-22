@@ -1,13 +1,15 @@
 package com.algaworks.ecommerce.model;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,8 +20,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "categoria")
 public class Categoria {
-	@EqualsAndHashCode.Include
-	@Id
+	
 //	@GeneratedValue(strategy = GenerationType.AUTO) // quem escolhe a forma é o Hibernate
 	
 //	 Cria uma sequence caso o DB nao seja compativel com o mySql
@@ -35,12 +36,18 @@ public class Categoria {
 //					initialValue = 0,
 //					allocationSize = 50	)
 	
+	@EqualsAndHashCode.Include
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incremento
 	private Integer id;
 	
 	private String nome;
 	
-	@Column(name = "categoria_id")
-	private Integer categoriaPaiId;
+	@ManyToOne
+    @JoinColumn(name = "categoria_pai_id")
+    private Categoria categoriaPai;
+
+    @OneToMany(mappedBy = "categoriaPai")
+    private List<Categoria> categorias;
 
 }
