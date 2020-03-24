@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -41,8 +42,8 @@ public class Pedido {
 	@Column(name = "data_conclusao")
 	private LocalDateTime dataConclusao;
 	
-	@Column(name = "nota_fiscal_id")
-	private Integer notaFiscalId;
+	@OneToOne(mappedBy = "pedido")
+	private NotaFiscal notaFiscal;
 	
 	@Enumerated (EnumType.STRING)
 	private StatusPedido status;
@@ -54,5 +55,8 @@ public class Pedido {
 	
 	@Embedded
 	private EnderecoEntregaPedido endereco;
+	
+	@OneToOne(mappedBy = "pedido")
+	private PagamentoCartao pagamento;
 
 }

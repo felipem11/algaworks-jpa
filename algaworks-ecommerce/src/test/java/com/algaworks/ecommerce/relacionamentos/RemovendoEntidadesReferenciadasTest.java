@@ -13,7 +13,7 @@ import com.algaworks.ecommerce.model.Pedido;
 import com.algaworks.ecommerce.model.Produto;
 import com.algaworks.ecommerce.model.StatusPedido;
 
-public class RemovendoEntidadesRelacionadasTest extends EntityManagerTest{
+public class RemovendoEntidadesReferenciadasTest extends EntityManagerTest{
 	
 	@Test
 	public void verificarRelacionamento() {
