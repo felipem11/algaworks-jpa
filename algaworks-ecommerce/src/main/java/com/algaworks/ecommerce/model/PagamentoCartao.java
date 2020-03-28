@@ -24,7 +24,9 @@ public class PagamentoCartao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne
+	//optional indicar que sempre vai ter o atributo
+	//forçando fazer o inner join ao invés de Left outer join que é menos performatico
+	@OneToOne(optional = false)
 	@JoinColumn(name = "pedido")
 	private Pedido pedido;
 	

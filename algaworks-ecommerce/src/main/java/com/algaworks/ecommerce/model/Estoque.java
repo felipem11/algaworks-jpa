@@ -1,10 +1,11 @@
 package com.algaworks.ecommerce.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -21,8 +22,11 @@ public class Estoque {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "produto_id")
-	private Integer produtoId;
+	//optional indicar que sempre vai ter o atributo
+	//forçando fazer o inner join ao invés de Left outer join que é menos performatico
+	@OneToOne(optional = false)
+	@JoinColumn(name = "produto_id")
+	private Produto produto;
 	
 	private Integer quantidade;
 

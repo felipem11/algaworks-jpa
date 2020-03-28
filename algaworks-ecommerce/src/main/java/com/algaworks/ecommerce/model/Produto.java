@@ -4,14 +4,17 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import listener.GenericoListener;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +22,7 @@ import lombok.Setter;
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@EntityListeners({ GenericoListener.class})
 @Table (name = "produto")
 public class Produto {
 	
@@ -38,4 +42,7 @@ public class Produto {
 			joinColumns = @JoinColumn (name = "produto_id"),  //nome da coluna da intermediária
 			inverseJoinColumns = @JoinColumn (name = "categoria_id")) // idem
 	private List<Categoria> categorias;
+	
+	@OneToOne(mappedBy = "produto")
+	private Estoque estoque;
 }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,7 +26,13 @@ public class NotaFiscal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne
+	
+//	@JoinTable(name = "pedido_nota_fiscal", // cria a tabela pedido_nota_fiscal 
+//			joinColumns = @JoinColumn(name = "nota_fiscal_id", unique = true), // 
+//			inverseJoinColumns = @JoinColumn(name = "pedido_id", unique = true))
+	//optional indicar que sempre vai ter o atributo
+	//forçando fazer o inner join ao invés de Left outer join que é menos performatico
+	@OneToOne(optional = false)
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 	

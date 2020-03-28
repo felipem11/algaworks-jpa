@@ -25,11 +25,14 @@ public class ItemPedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne
+	//optional indicar que sempre vai ter o atributo
+	//forçando fazer o inner join ao invés de Left outer join que é menos performatico
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 	
-	@ManyToOne
+	
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "produto_id")
 	private Produto produto;
 
