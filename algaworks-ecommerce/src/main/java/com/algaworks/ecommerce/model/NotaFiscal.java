@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,7 +24,7 @@ import lombok.Setter;
 public class NotaFiscal {
 	@EqualsAndHashCode.Include
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "pedido_id")
 	private Integer id;
 	
 	
@@ -33,6 +34,7 @@ public class NotaFiscal {
 	//optional indicar que sempre vai ter o atributo
 	//forçando fazer o inner join ao invés de Left outer join que é menos performatico
 	@OneToOne(optional = false)
+	@MapsId
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 	
