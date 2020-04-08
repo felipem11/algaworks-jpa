@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.iniciandocomjpa;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,6 +38,7 @@ public class OperacaoesComTransacaoTest extends EntityManagerTest{
 		produtoPersist.setNome("Smartphone One Plus");
 		produtoPersist.setDescricao("O processador mais rapido");
 		produtoPersist.setPreco(new BigDecimal(2000));
+		produtoPersist.setDataCriacao(LocalDateTime.now());
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(produtoPersist);  // o Persist cria uma referencia ao objeto Gerenciado pelo JPA produtoPersist
@@ -54,6 +56,7 @@ public class OperacaoesComTransacaoTest extends EntityManagerTest{
 		produtoMerge.setNome("Notebook Dell");
 		produtoMerge.setDescricao("O melhor da categoria");
 		produtoMerge.setPreco(new BigDecimal(2800));
+		produtoMerge.setDataCriacao(LocalDateTime.now());
 		
 		entityManager.getTransaction().begin();
 //		entityManager.merge(produtoMerge);  // o merge cria uma COPIA do objetoprodutoMerge
@@ -76,6 +79,7 @@ public class OperacaoesComTransacaoTest extends EntityManagerTest{
 		produto.setNome("Microfone Rode Videmic");
 		produto.setDescricao("A melhor qualidade de som");
 		produto.setPreco(new BigDecimal(1000));
+		produto.setDataCriacao(LocalDateTime.now());
 		
 		entityManager.getTransaction().begin();
 		Produto produtoSalvo = entityManager.merge(produto); // o merge retorna o objeto que foi feito o merge, assim retorna tb o Id
@@ -144,6 +148,7 @@ public class OperacaoesComTransacaoTest extends EntityManagerTest{
 		produto.setNome("Camera Canon");
 		produto.setDescricao("A melhor definicao para suas fotos");
 		produto.setPreco(new BigDecimal(5000));
+		produto.setDataCriacao(LocalDateTime.now());
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(produto);

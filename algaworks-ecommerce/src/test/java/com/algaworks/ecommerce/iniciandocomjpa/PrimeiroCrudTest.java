@@ -1,10 +1,13 @@
 package com.algaworks.ecommerce.iniciandocomjpa;
 
+import java.time.LocalDate;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Cliente;
+import com.algaworks.ecommerce.model.SexoCliente;
 
 public class PrimeiroCrudTest extends EntityManagerTest{
 	@Test
@@ -14,6 +17,9 @@ public class PrimeiroCrudTest extends EntityManagerTest{
 		entityManager.getTransaction().begin();
 //		cliente.setId(3);
 		cliente.setNome("Freddy Krueger");
+		cliente.setCpf("05408431053");
+		cliente.setDataNascimento(LocalDate.of(1946, 06, 13));
+		cliente.setSexo(SexoCliente.MASCULINO);
 		entityManager.persist(cliente);
 		entityManager.getTransaction().commit();
 		

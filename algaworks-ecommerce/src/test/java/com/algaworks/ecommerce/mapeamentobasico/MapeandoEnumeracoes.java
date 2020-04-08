@@ -1,5 +1,7 @@
 package com.algaworks.ecommerce.mapeamentobasico;
 
+import java.time.LocalDate;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,6 +17,8 @@ public class MapeandoEnumeracoes extends EntityManagerTest{
 //		cliente.setId(5);
 		cliente.setNome("Chucky");
 		cliente.setSexo(SexoCliente.MASCULINO);
+		cliente.setCpf("01252194072");
+		cliente.setDataNascimento(LocalDate.of(1988	, 1, 24));
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(cliente);

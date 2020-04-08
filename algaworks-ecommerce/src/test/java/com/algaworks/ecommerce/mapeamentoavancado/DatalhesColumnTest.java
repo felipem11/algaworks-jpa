@@ -23,6 +23,7 @@ public class DatalhesColumnTest extends EntityManagerTest{
 		produto.setPreco(new BigDecimal(540));
 		produto.setDataCriacao(LocalDateTime.now());
 		produto.setDataUltimaAtualizacao(LocalDateTime.now());
+		produto.setNome("Galaxy");
 		
 		Cliente cliente = entityManager.find(Cliente.class, 1);
 		Pedido pedido = new Pedido();

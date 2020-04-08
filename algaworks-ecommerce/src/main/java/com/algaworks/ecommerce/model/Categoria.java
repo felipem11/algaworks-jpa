@@ -2,25 +2,26 @@ package com.algaworks.ecommerce.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ForeignKey;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "categoria")
-public class Categoria {
+@Table(name = "categoria",
+		uniqueConstraints = { @UniqueConstraint(name = "unq_nome", columnNames = { "nome" })},
+		indexes = { @Index(name = "idx_nome", columnList = "nome")})
+public class Categoria extends EntidadeBaseInteger{
 	
 //	@GeneratedValue(strategy = GenerationType.AUTO) // quem escolhe a forma é o Hibernate
 	
@@ -37,15 +38,11 @@ public class Categoria {
 //					initialValue = 0,
 //					allocationSize = 50	)
 	
-	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incremento
-	private Integer id;
-	
+	@Column(length = 100, nullable = false)
 	private String nome;
 	
 	@ManyToOne
-    @JoinColumn(name = "categoria_pai_id")
+    @JoinColumn(name = "categoria_pai_id", foreignKey = @ForeignKey(name = "fk_categoria_categoria_pai"))
     private Categoria categoriaPai;
 
     @OneToMany(mappedBy = "categoriaPai")

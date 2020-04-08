@@ -1,39 +1,20 @@
 package com.algaworks.ecommerce.model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table (name = "pagamento_cartao")
-public class PagamentoCartao {
-	@EqualsAndHashCode.Include
-	@Id
-	@Column(name = "pedido_id")
-	private Integer id;
+@DiscriminatorValue("cartao") //Valor da coluna tipo_pagamento
+@Table (name = "pagamento_cartao") //Está assumindo a tabela da Herança Pagamento
+public class PagamentoCartao extends Pagamento{
 	
-	//optional indicar que sempre vai ter o atributo
-	//forçando fazer o inner join ao invés de Left outer join que é menos performatico
-	@OneToOne(optional = false)
-	@JoinColumn(name = "pedido")
-	@MapsId
-	private Pedido pedido;
-	
-	@Enumerated (EnumType.STRING)
-	private StatusPagamento status;
-
-	private String numero;
+	@Column(name = "numero_cartao", length = 16)
+	private String numeroCartao;
 	
 }

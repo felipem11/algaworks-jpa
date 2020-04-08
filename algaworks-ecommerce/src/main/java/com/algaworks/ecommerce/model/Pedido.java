@@ -11,6 +11,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,25 +35,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @EntityListeners({ GerarNotaFiscalListener.class, GenericoListener.class})
 @Table (name = "pedido")
-public class Pedido {
-	
-	
-	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+public class Pedido extends EntidadeBaseInteger{
 	
 	//optional indicar que sempre vai ter o atributo
 	//forçando fazer o inner join ao invés de Left outer join que é menos performatico
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "cliente_id")
+	@JoinColumn(name = "cliente_id", nullable = false,
+			foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
 	private Cliente cliente;
 	
-	@Column(name = "data_criacao", updatable = false)
+	@Column(name = "data_criacao", updatable = false, nullable = false)
 	private LocalDateTime dataCriacao;
 
 	@Column(name = "data_ultima_atualizacao", insertable = false)
@@ -66,6 +61,7 @@ public class Pedido {
 	@OneToOne(mappedBy = "pedido", fetch = FetchType.EAGER)
 	private NotaFiscal notaFiscal;
 	
+	@Column(length = 30)
 	@Enumerated (EnumType.STRING)
 	private StatusPedido status;
 	
@@ -73,14 +69,14 @@ public class Pedido {
 	
 	//padrao LAZY qnd quando se está mapeando uma entidade de Coleção
 	//só irá no DB se tiver sendo usada como pedido.getItens().isEmpty().
-	@OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "pedido")
 	private List<ItemPedido> itens;
 	
 	@Embedded
 	private EnderecoEntregaPedido endereco;
 	
 	@OneToOne(mappedBy = "pedido")
-	private PagamentoCartao pagamento;
+	private Pagamento pagamento;
 	
 	public boolean isPago() {
 		return StatusPedido.PAGO.equals(status);

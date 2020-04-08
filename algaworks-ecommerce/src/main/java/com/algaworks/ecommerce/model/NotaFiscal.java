@@ -4,11 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,12 +37,15 @@ public class NotaFiscal {
 	//forçando fazer o inner join ao invés de Left outer join que é menos performatico
 	@OneToOne(optional = false)
 	@MapsId
-	@JoinColumn(name = "pedido_id")
+	@JoinColumn(name = "pedido_id", nullable = false,
+			foreignKey = @ForeignKey(name = "fk_nota_fiscal_pedido"))
 	private Pedido pedido;
 	
-	private String xml;
+	@Lob
+	@Column(nullable = false)
+	private byte[] xml;
 
-	@Column(name = "data_emissao")
+	@Column(name = "data_emissao", nullable = false)
 	private Date dataEmissao;
 	
 }

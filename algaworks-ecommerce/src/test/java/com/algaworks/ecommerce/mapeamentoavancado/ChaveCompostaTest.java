@@ -1,5 +1,7 @@
 package com.algaworks.ecommerce.mapeamentoavancado;
 
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,6 +34,7 @@ public class ChaveCompostaTest extends EntityManagerTest{
 		itemPedido.setPedido(pedido);
 		itemPedido.setProduto(produto);
 		itemPedido.setQuantidade(1);
+		itemPedido.setPrecoProduto(produto.getPreco());
 		
 		entityManager.persist(pedido);
 		entityManager.persist(itemPedido);

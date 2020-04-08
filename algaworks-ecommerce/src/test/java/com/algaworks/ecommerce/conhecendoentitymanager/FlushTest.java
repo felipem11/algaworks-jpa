@@ -13,7 +13,7 @@ public class FlushTest extends EntityManagerTest {
         try {
             entityManager.getTransaction().begin();
 
-            Pedido pedido = entityManager.find(Pedido.class, 1);
+            Pedido pedido = entityManager.find(Pedido.class, 2);
             pedido.setStatus(StatusPedido.PAGO);
 
             entityManager.flush();
