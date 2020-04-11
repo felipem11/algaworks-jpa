@@ -2,7 +2,6 @@ package com.algaworks.ecommerce.mapeamentoavancado;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,7 +40,7 @@ public class ElementCollectionTest extends EntityManagerTest{
 		atributo.setValor("5\"");
 		entityManager.getTransaction().begin();
 		
-		produto.setAtributo(Arrays.asList(atributo, new Atributo("Altura","10cm")));
+		produto.setAtributos(Arrays.asList(atributo, new Atributo("Altura","10cm")));
 		
 		entityManager.getTransaction().commit();
 		
@@ -49,7 +48,7 @@ public class ElementCollectionTest extends EntityManagerTest{
 		
 		Produto produtoVerificao = entityManager.find(Produto.class, produto.getId());	
 		
-		Assert.assertFalse(produtoVerificao.getAtributo().isEmpty());
+		Assert.assertFalse(produtoVerificao.getAtributos().isEmpty());
 		
 	}
 	

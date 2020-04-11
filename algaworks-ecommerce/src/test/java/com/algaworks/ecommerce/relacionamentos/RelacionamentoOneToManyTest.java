@@ -16,7 +16,7 @@ import com.algaworks.ecommerce.model.StatusPedido;
 
 public class RelacionamentoOneToManyTest extends EntityManagerTest{
 	
-	@Test
+//	@Test
 	public void verificarRelacionamento() {
 		Cliente cliente = entityManager.find(Cliente.class, 1);
 		
@@ -34,7 +34,7 @@ public class RelacionamentoOneToManyTest extends EntityManagerTest{
 		
 		Cliente clienteVerificacao = entityManager.find(Cliente.class, cliente.getId());
 		
-		Assert.assertFalse(clienteVerificacao.getPedido().isEmpty());
+		Assert.assertFalse(clienteVerificacao.getPedidos().isEmpty());
 		
 	}
 	

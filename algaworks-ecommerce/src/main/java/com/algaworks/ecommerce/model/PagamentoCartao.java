@@ -1,20 +1,17 @@
 package com.algaworks.ecommerce.model;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+import javax.persistence.*;
+
+@Getter
+@Setter
+@DiscriminatorValue("cartao")
 @Entity
-@DiscriminatorValue("cartao") //Valor da coluna tipo_pagamento
-@Table (name = "pagamento_cartao") //Está assumindo a tabela da Herança Pagamento
-public class PagamentoCartao extends Pagamento{
-	
-	@Column(name = "numero_cartao", length = 16)
-	private String numeroCartao;
-	
+public class PagamentoCartao extends Pagamento {
+
+    @Column(name = "numero_cartao", length = 50)
+    private String numeroCartao;
 }
