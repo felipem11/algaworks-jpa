@@ -14,6 +14,19 @@ import com.algaworks.ecommerce.model.Cliente;
 import com.algaworks.ecommerce.model.Pedido;
 
 public class BasicoJPQLTest extends EntityManagerTest{
+	
+	@Test
+	public void usarDistinct() {
+		String jpql = "select distinct p from Pedido p left join p.itens i";
+		
+		TypedQuery<Pedido> typedQuery = entityManager.createQuery(jpql, Pedido.class);
+		
+		List<Pedido> pedidos = typedQuery.getResultList();
+		
+		Assert.assertFalse(pedidos.isEmpty());
+		
+		pedidos.forEach(p -> System.out.println(p.getId()));
+	}
 	@Test
 	public void projetarNoDTO() {
 		String jpql = "select new com.algaworks.ecommerce.dto.ProdutoDTO(id, nome) from Produto";
